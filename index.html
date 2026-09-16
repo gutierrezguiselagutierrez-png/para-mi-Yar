@@ -1,313 +1,914 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para mi Yar 🌻❤️</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<title>Para mi Yar 🌻❤️</title>
 
-        body {
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
-            background:
-                radial-gradient(circle at 50% 50%, #17102d 0%, #090615 45%, #020107 100%);
-            font-family: Georgia, 'Times New Roman', serif;
-            color: white;
-        }
+<style>
 
-        .galaxy {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        /* Estrellas */
-        .star {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            background: white;
-            border-radius: 50%;
-            box-shadow: 0 0 8px white;
-            animation: twinkle 2s infinite alternate;
-        }
+html,body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+}
 
-        @keyframes twinkle {
-            from {
-                opacity: 0.25;
-                transform: scale(0.7);
-            }
+body{
+    background:#02020b;
+    color:white;
+    font-family:Georgia, "Times New Roman", serif;
+}
 
-            to {
-                opacity: 1;
-                transform: scale(1.5);
-            }
-        }
+/* =========================
+   UNIVERSO
+========================= */
 
-        /* Nebulosa */
-        .nebula {
-            position: absolute;
-            width: 650px;
-            height: 650px;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-            background:
-                radial-gradient(
-                    circle,
-                    rgba(184, 122, 255, 0.18),
-                    rgba(111, 66, 193, 0.08) 35%,
-                    transparent 70%
-                );
-            filter: blur(30px);
-            animation: breathe 8s ease-in-out infinite alternate;
-        }
+.universe{
+    position:relative;
+    width:100%;
+    height:100vh;
+    overflow:hidden;
+    background:
+        radial-gradient(
+            ellipse at center,
+            #21133d 0%,
+            #0d0a20 38%,
+            #03030c 75%,
+            #010106 100%
+        );
+}
 
-        @keyframes breathe {
-            from {
-                transform: translate(-50%, -50%) scale(0.9);
-            }
+/* Nebulosas */
 
-            to {
-                transform: translate(-50%, -50%) scale(1.1);
-            }
-        }
+.nebula{
+    position:absolute;
+    width:80vw;
+    height:80vw;
+    max-width:900px;
+    max-height:900px;
 
-        /* Contenido */
-        .content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 90%;
-            max-width: 700px;
-            text-align: center;
-            z-index: 10;
-        }
+    left:50%;
+    top:50%;
 
-        .small-text {
-            font-size: 1rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: #d9c8ff;
-            margin-bottom: 25px;
-            opacity: 0;
-            animation: appear 2s ease forwards;
-        }
+    transform:translate(-50%,-50%);
 
-        h1 {
-            font-size: clamp(3rem, 10vw, 7rem);
-            font-weight: normal;
-            margin-bottom: 20px;
-            background: linear-gradient(
-                120deg,
-                #ffffff,
-                #f7d9ff,
-                #ffe4a8,
-                #ffffff
-            );
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 25px rgba(255, 210, 255, 0.5));
-            animation: glow 4s ease-in-out infinite alternate;
-        }
+    border-radius:50%;
 
-        @keyframes glow {
-            from {
-                filter: drop-shadow(0 0 15px rgba(255, 210, 255, 0.35));
-            }
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(160,90,255,.18),
+            rgba(255,120,220,.08) 35%,
+            transparent 70%
+        );
 
-            to {
-                filter: drop-shadow(0 0 35px rgba(255, 210, 255, 0.75));
-            }
-        }
+    filter:blur(35px);
 
-        .message {
-            font-size: clamp(1.1rem, 3vw, 1.5rem);
-            line-height: 1.8;
-            color: #f4eefa;
-            opacity: 0;
-            animation: appear 2s ease forwards;
-            animation-delay: 1.5s;
-        }
+    animation:
+        nebulaMove 12s ease-in-out infinite alternate;
+}
 
-        @keyframes appear {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
+@keyframes nebulaMove{
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+    0%{
+        transform:translate(-50%,-50%) scale(.85) rotate(0deg);
+    }
 
-        .enter-button {
-            margin-top: 35px;
-            padding: 14px 32px;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            border-radius: 50px;
-            background: rgba(255, 255, 255, 0.08);
-            color: white;
-            font-size: 1rem;
-            cursor: pointer;
-            backdrop-filter: blur(10px);
-            transition: 0.4s;
-            opacity: 0;
-            animation: appear 2s ease forwards;
-            animation-delay: 3s;
-        }
+    50%{
+        transform:translate(-50%,-50%) scale(1.08) rotate(20deg);
+    }
 
-        .enter-button:hover {
-            transform: scale(1.08);
-            background: rgba(255, 255, 255, 0.18);
-            box-shadow: 0 0 30px rgba(255, 220, 255, 0.5);
-        }
+    100%{
+        transform:translate(-50%,-50%) scale(.95) rotate(-15deg);
+    }
+}
 
-        /* Corazones */
-        .heart {
-            position: absolute;
-            color: #ffb7df;
-            font-size: 18px;
-            pointer-events: none;
-            animation: floatHeart 5s linear forwards;
-            z-index: 20;
-        }
 
-        @keyframes floatHeart {
-            from {
-                opacity: 0;
-                transform: translateY(20px) scale(0.5);
-            }
+/* =========================
+   ESTRELLAS
+========================= */
 
-            20% {
-                opacity: 1;
-            }
+.stars{
+    position:absolute;
+    inset:0;
+}
 
-            to {
-                opacity: 0;
-                transform: translateY(-180px) scale(1.3);
-            }
-        }
+.star{
+    position:absolute;
 
-        /* Adaptación móvil */
-        @media (max-width: 600px) {
-            .nebula {
-                width: 450px;
-                height: 450px;
-            }
+    width:2px;
+    height:2px;
 
-            .small-text {
-                font-size: 0.75rem;
-                letter-spacing: 3px;
-            }
+    border-radius:50%;
 
-            .message {
-                line-height: 1.6;
-            }
+    background:white;
 
-            .enter-button {
-                padding: 13px 27px;
-            }
-        }
-    </style>
+    box-shadow:
+        0 0 5px white,
+        0 0 12px rgba(255,255,255,.8);
+
+    animation:
+        twinkle var(--duration) ease-in-out infinite alternate;
+
+    animation-delay:var(--delay);
+}
+
+@keyframes twinkle{
+
+    0%{
+        opacity:.15;
+        transform:scale(.5);
+    }
+
+    50%{
+        opacity:.7;
+    }
+
+    100%{
+        opacity:1;
+        transform:scale(1.7);
+    }
+}
+
+
+/* Estrellas grandes */
+
+.sparkle{
+    position:absolute;
+
+    color:white;
+
+    font-size:20px;
+
+    text-shadow:
+        0 0 8px white,
+        0 0 20px #d9a7ff;
+
+    animation:sparkle 3s ease-in-out infinite;
+}
+
+@keyframes sparkle{
+
+    0%,100%{
+        opacity:.25;
+        transform:scale(.6) rotate(0deg);
+    }
+
+    50%{
+        opacity:1;
+        transform:scale(1.3) rotate(45deg);
+    }
+}
+
+
+/* =========================
+   CONTENIDO CENTRAL
+========================= */
+
+.content{
+
+    position:absolute;
+
+    width:min(90%,700px);
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    text-align:center;
+
+    z-index:20;
+
+    animation:contentAppear 2.5s ease forwards;
+}
+
+@keyframes contentAppear{
+
+    from{
+        opacity:0;
+        transform:translate(-50%,-43%);
+    }
+
+    to{
+        opacity:1;
+        transform:translate(-50%,-50%);
+    }
+}
+
+
+.pre-title{
+
+    font-size:clamp(.75rem,2vw,1rem);
+
+    letter-spacing:
+        clamp(3px,1vw,7px);
+
+    text-transform:uppercase;
+
+    color:#e8d8ff;
+
+    margin-bottom:18px;
+
+    text-shadow:
+        0 0 15px rgba(210,160,255,.8);
+}
+
+
+.name{
+
+    font-size:
+        clamp(3.2rem,12vw,7rem);
+
+    font-weight:normal;
+
+    margin-bottom:5px;
+
+    background:
+        linear-gradient(
+            120deg,
+            #fff,
+            #ffdff5,
+            #ffe6a7,
+            #fff
+        );
+
+    -webkit-background-clip:text;
+    background-clip:text;
+
+    color:transparent;
+
+    text-shadow:
+        0 0 30px rgba(255,190,240,.2);
+
+    animation:
+        nameGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes nameGlow{
+
+    from{
+        filter:
+            drop-shadow(0 0 8px rgba(255,170,230,.3));
+    }
+
+    to{
+        filter:
+            drop-shadow(0 0 35px rgba(255,210,245,.9));
+    }
+}
+
+
+.age{
+
+    font-size:
+        clamp(5rem,20vw,12rem);
+
+    line-height:.85;
+
+    font-weight:bold;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffd66b,
+            #fff1b5,
+            #ffb4df,
+            #ffeaa7
+        );
+
+    -webkit-background-clip:text;
+    background-clip:text;
+
+    color:transparent;
+
+    filter:
+        drop-shadow(0 0 20px rgba(255,190,100,.4));
+
+    animation:
+        agePulse 4s ease-in-out infinite;
+}
+
+@keyframes agePulse{
+
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.04);
+    }
+}
+
+
+.message{
+
+    margin-top:25px;
+
+    font-size:
+        clamp(1.05rem,3vw,1.5rem);
+
+    line-height:1.7;
+
+    color:#f7edf9;
+
+    text-shadow:
+        0 0 15px rgba(255,255,255,.25);
+}
+
+
+.highlight{
+
+    color:#ffe4a8;
+
+    font-style:italic;
+}
+
+
+/* =========================
+   BOTÓN
+========================= */
+
+.enter{
+
+    margin-top:32px;
+
+    padding:
+        15px 32px;
+
+    border-radius:50px;
+
+    border:
+        1px solid rgba(255,255,255,.35);
+
+    background:
+        rgba(255,255,255,.08);
+
+    color:white;
+
+    font-family:inherit;
+
+    font-size:1rem;
+
+    cursor:pointer;
+
+    backdrop-filter:blur(12px);
+
+    box-shadow:
+        0 0 20px rgba(255,190,240,.12);
+
+    transition:
+        .4s ease;
+
+    animation:
+        buttonFloat 3s ease-in-out infinite;
+}
+
+@keyframes buttonFloat{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-5px);
+    }
+}
+
+.enter:hover{
+
+    transform:
+        scale(1.08);
+
+    background:
+        rgba(255,255,255,.15);
+
+    box-shadow:
+        0 0 30px rgba(255,190,240,.45);
+}
+
+
+/* =========================
+   FLORES
+========================= */
+
+.flower{
+
+    position:absolute;
+
+    font-size:
+        clamp(25px,4vw,45px);
+
+    opacity:.8;
+
+    z-index:8;
+
+    filter:
+        drop-shadow(0 0 10px rgba(255,210,100,.5));
+
+    animation:
+        flowerFloat 7s ease-in-out infinite;
+}
+
+@keyframes flowerFloat{
+
+    0%,100%{
+        transform:
+            translateY(0)
+            rotate(-5deg);
+    }
+
+    50%{
+        transform:
+            translateY(-25px)
+            rotate(7deg);
+    }
+}
+
+
+/* =========================
+   PÉTALOS
+========================= */
+
+.petal{
+
+    position:absolute;
+
+    top:-50px;
+
+    z-index:15;
+
+    pointer-events:none;
+
+    animation:
+        fall linear forwards;
+}
+
+@keyframes fall{
+
+    0%{
+        transform:
+            translateY(-50px)
+            rotate(0deg);
+        opacity:0;
+    }
+
+    10%{
+        opacity:.9;
+    }
+
+    100%{
+        transform:
+            translateY(110vh)
+            translateX(var(--drift))
+            rotate(720deg);
+        opacity:0;
+    }
+}
+
+
+/* =========================
+   CORAZONES
+========================= */
+
+.heart{
+
+    position:absolute;
+
+    pointer-events:none;
+
+    z-index:30;
+
+    font-size:
+        clamp(15px,3vw,28px);
+
+    animation:
+        heartFloat 3s ease-out forwards;
+}
+
+@keyframes heartFloat{
+
+    0%{
+        opacity:0;
+        transform:
+            translateY(0)
+            scale(.4);
+    }
+
+    20%{
+        opacity:1;
+    }
+
+    100%{
+        opacity:0;
+        transform:
+            translateY(-180px)
+            scale(1.4);
+    }
+}
+
+
+/* =========================
+   FLASH AL TOCAR
+========================= */
+
+.flash{
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:100;
+
+    pointer-events:none;
+
+    background:white;
+
+    opacity:0;
+
+}
+
+.flash.active{
+
+    animation:
+        flashAnimation .8s ease;
+}
+
+@keyframes flashAnimation{
+
+    0%{
+        opacity:0;
+    }
+
+    30%{
+        opacity:.25;
+    }
+
+    100%{
+        opacity:0;
+    }
+}
+
+
+/* =========================
+   PANTALLA DE TRANSICIÓN
+========================= */
+
+.transition{
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:200;
+
+    background:#03020b;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:
+        opacity 1.2s ease;
+}
+
+.transition.show{
+
+    opacity:1;
+
+}
+
+.transition-text{
+
+    text-align:center;
+
+    width:90%;
+
+    font-size:
+        clamp(1.2rem,4vw,2rem);
+
+    line-height:1.8;
+
+    color:#fff;
+
+    text-shadow:
+        0 0 20px rgba(255,190,230,.8);
+}
+
+
+/* =========================
+   MÓVIL
+========================= */
+
+@media(max-width:600px){
+
+    .message{
+        padding:0 10px;
+    }
+
+    .enter{
+        font-size:.95rem;
+        padding:14px 25px;
+    }
+
+    .flower{
+        opacity:.6;
+    }
+
+}
+
+</style>
 </head>
+
 
 <body>
 
-<div class="galaxy">
+<div class="universe">
 
     <div class="nebula"></div>
 
-    <div class="content">
+    <div class="stars" id="stars"></div>
 
-        <div class="small-text">
-            Para mi Yar ✨
+    <!-- Destellos -->
+    <div class="sparkle" style="left:12%;top:20%;">✦</div>
+    <div class="sparkle" style="left:83%;top:18%;animation-delay:1s;">✦</div>
+    <div class="sparkle" style="left:18%;top:78%;animation-delay:2s;">✧</div>
+    <div class="sparkle" style="left:87%;top:75%;animation-delay:.5s;">✦</div>
+
+    <!-- Flores -->
+    <div class="flower" style="left:7%;top:18%;animation-delay:1s;">🌻</div>
+    <div class="flower" style="right:8%;top:22%;animation-delay:2s;">🌹</div>
+    <div class="flower" style="left:9%;bottom:15%;animation-delay:3s;">🌹</div>
+    <div class="flower" style="right:8%;bottom:14%;animation-delay:1.5s;">🌻</div>
+
+    <!-- Contenido -->
+    <main class="content">
+
+        <div class="pre-title">
+            Para la niña que hace bonito mi universo
         </div>
 
-        <h1>25</h1>
+        <div class="name">
+            Mi Yar
+        </div>
+
+        <div class="age">
+            25
+        </div>
 
         <div class="message">
-            Hoy cumple años la niña<br>
-            que hace bonito mi universo. 🌻❤️
+
+            Hoy cumple años<br>
+
+            <span class="highlight">
+                la niña que hace bonito mi universo.
+            </span>
+
+            🌻❤️
+
         </div>
 
-        <button class="enter-button" onclick="enterUniverse()">
+        <button class="enter" onclick="enterUniverse()">
             ✨ Entrar a mi universo ✨
         </button>
+
+    </main>
+
+    <div class="flash" id="flash"></div>
+
+    <div class="transition" id="transition">
+
+        <div class="transition-text">
+
+            ✨ Espera, mi Yar... ✨
+            <br><br>
+
+            <span>
+                Esto apenas comienza. 🥺❤️
+            </span>
+
+        </div>
 
     </div>
 
 </div>
 
+
 <script>
 
-    /* Crear estrellas */
-    const galaxy = document.querySelector('.galaxy');
+/* =====================================
+   CREAR MUCHAS ESTRELLAS
+===================================== */
 
-    for (let i = 0; i < 180; i++) {
+const starsContainer =
+    document.getElementById("stars");
 
-        const star = document.createElement('div');
+for(let i = 0; i < 220; i++){
 
-        star.classList.add('star');
+    const star =
+        document.createElement("div");
 
-        star.style.left = Math.random() * 100 + '%';
-        star.style.top = Math.random() * 100 + '%';
+    star.className = "star";
 
-        const size = Math.random() * 3 + 1;
+    star.style.left =
+        Math.random() * 100 + "%";
 
-        star.style.width = size + 'px';
-        star.style.height = size + 'px';
+    star.style.top =
+        Math.random() * 100 + "%";
 
-        star.style.animationDelay =
-            Math.random() * 3 + 's';
+    const size =
+        Math.random() * 3 + 1;
 
-        galaxy.appendChild(star);
+    star.style.width =
+        size + "px";
+
+    star.style.height =
+        size + "px";
+
+    star.style.setProperty(
+        "--duration",
+        (1.5 + Math.random() * 4) + "s"
+    );
+
+    star.style.setProperty(
+        "--delay",
+        Math.random() * 4 + "s"
+    );
+
+    starsContainer.appendChild(star);
+}
+
+
+/* =====================================
+   CORAZONES
+===================================== */
+
+function createHeart(x,y){
+
+    const heart =
+        document.createElement("div");
+
+    heart.className = "heart";
+
+    const hearts =
+        ["❤️","💗","💕","💖","💓"];
+
+    heart.innerHTML =
+        hearts[Math.floor(
+            Math.random() * hearts.length
+        )];
+
+    heart.style.left =
+        x + "px";
+
+    heart.style.top =
+        y + "px";
+
+    document.querySelector(".universe")
+        .appendChild(heart);
+
+    setTimeout(()=>{
+        heart.remove();
+    },3000);
+}
+
+
+/* =====================================
+   PÉTALOS
+===================================== */
+
+function createPetal(){
+
+    const petal =
+        document.createElement("div");
+
+    petal.className = "petal";
+
+    const flowers =
+        ["🌹","🌸","🌷","🌺"];
+
+    petal.innerHTML =
+        flowers[Math.floor(
+            Math.random() * flowers.length
+        )];
+
+    petal.style.left =
+        Math.random() * 100 + "%";
+
+    petal.style.fontSize =
+        (12 + Math.random() * 15) + "px";
+
+    petal.style.animationDuration =
+        (5 + Math.random() * 5) + "s";
+
+    petal.style.setProperty(
+        "--drift",
+        (-100 + Math.random() * 200) + "px"
+    );
+
+    document.querySelector(".universe")
+        .appendChild(petal);
+
+    setTimeout(()=>{
+        petal.remove();
+    },10000);
+}
+
+
+/* Pétalos ocasionales */
+
+setInterval(createPetal,1300);
+
+
+/* =====================================
+   BOTÓN PRINCIPAL
+===================================== */
+
+function enterUniverse(){
+
+    const universe =
+        document.querySelector(".universe");
+
+    const flash =
+        document.getElementById("flash");
+
+    const transition =
+        document.getElementById("transition");
+
+
+    /* Corazones */
+
+    for(let i=0;i<45;i++){
+
+        setTimeout(()=>{
+
+            const x =
+                window.innerWidth *
+                (0.15 + Math.random() * .7);
+
+            const y =
+                window.innerHeight *
+                (0.45 + Math.random() * .35);
+
+            createHeart(x,y);
+
+        },i*35);
+
     }
 
-    /* Crear corazones al entrar */
-    function enterUniverse() {
 
-        for (let i = 0; i < 35; i++) {
+    /* Flash */
 
-            const heart = document.createElement('div');
+    flash.classList.add("active");
 
-            heart.classList.add('heart');
+    setTimeout(()=>{
+        flash.classList.remove("active");
+    },800);
 
-            heart.innerHTML =
-                Math.random() > 0.5 ? '❤️' : '💗';
 
-            heart.style.left =
-                Math.random() * 100 + '%';
+    /* Mostrar transición */
 
-            heart.style.top =
-                (50 + Math.random() * 30) + '%';
+    setTimeout(()=>{
 
-            heart.style.animationDelay =
-                Math.random() * 1.5 + 's';
+        transition.classList.add("show");
 
-            galaxy.appendChild(heart);
+    },700);
 
-        }
+}
 
-        setTimeout(() => {
 
-            alert(
-                "Esta es solo la primera parte, mi Yar... 🌻❤️"
-            );
+/* =====================================
+   CORAZONES AL TOCAR LA PANTALLA
+===================================== */
 
-        }, 900);
+document.addEventListener("pointerdown",(event)=>{
+
+    if(
+        event.target.tagName === "BUTTON"
+    ){
+        return;
     }
+
+    createHeart(
+        event.clientX,
+        event.clientY
+    );
+
+});
+
 
 </script>
 

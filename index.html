@@ -8,13 +8,18 @@
 
 <style>
 
+/* =====================================================
+   BASE
+===================================================== */
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
 
-html,body{
+html,
+body{
     width:100%;
     height:100%;
     overflow:hidden;
@@ -23,18 +28,24 @@ html,body{
 body{
     background:#02020b;
     color:white;
-    font-family:Georgia, "Times New Roman", serif;
+    font-family:Georgia,"Times New Roman",serif;
 }
 
-/* =========================
+button{
+    font-family:inherit;
+}
+
+
+/* =====================================================
    UNIVERSO
-========================= */
+===================================================== */
 
 .universe{
     position:relative;
     width:100%;
     height:100vh;
     overflow:hidden;
+
     background:
         radial-gradient(
             ellipse at center,
@@ -43,14 +54,23 @@ body{
             #03030c 75%,
             #010106 100%
         );
+
+    transition:
+        transform 2s ease,
+        filter 2s ease;
 }
 
-/* Nebulosas */
+
+/* =====================================================
+   NEBULOSA
+===================================================== */
 
 .nebula{
     position:absolute;
-    width:80vw;
-    height:80vw;
+
+    width:85vw;
+    height:85vw;
+
     max-width:900px;
     max-height:900px;
 
@@ -78,22 +98,31 @@ body{
 @keyframes nebulaMove{
 
     0%{
-        transform:translate(-50%,-50%) scale(.85) rotate(0deg);
+        transform:
+            translate(-50%,-50%)
+            scale(.85)
+            rotate(0deg);
     }
 
     50%{
-        transform:translate(-50%,-50%) scale(1.08) rotate(20deg);
+        transform:
+            translate(-50%,-50%)
+            scale(1.08)
+            rotate(20deg);
     }
 
     100%{
-        transform:translate(-50%,-50%) scale(.95) rotate(-15deg);
+        transform:
+            translate(-50%,-50%)
+            scale(.95)
+            rotate(-15deg);
     }
 }
 
 
-/* =========================
+/* =====================================================
    ESTRELLAS
-========================= */
+===================================================== */
 
 .stars{
     position:absolute;
@@ -115,7 +144,8 @@ body{
         0 0 12px rgba(255,255,255,.8);
 
     animation:
-        twinkle var(--duration) ease-in-out infinite alternate;
+        twinkle var(--duration)
+        ease-in-out infinite alternate;
 
     animation-delay:var(--delay);
 }
@@ -138,7 +168,9 @@ body{
 }
 
 
-/* Estrellas grandes */
+/* =====================================================
+   DESTELLOS
+===================================================== */
 
 .sparkle{
     position:absolute;
@@ -151,7 +183,8 @@ body{
         0 0 8px white,
         0 0 20px #d9a7ff;
 
-    animation:sparkle 3s ease-in-out infinite;
+    animation:
+        sparkle 3s ease-in-out infinite;
 }
 
 @keyframes sparkle{
@@ -168,45 +201,64 @@ body{
 }
 
 
-/* =========================
-   CONTENIDO CENTRAL
-========================= */
+/* =====================================================
+   ESCENAS
+===================================================== */
+
+.scene{
+    position:absolute;
+
+    inset:0;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transform:scale(1.05);
+
+    transition:
+        opacity 1.3s ease,
+        transform 1.5s ease;
+
+    z-index:20;
+}
+
+.scene.active{
+    opacity:1;
+    pointer-events:auto;
+    transform:scale(1);
+}
+
+
+/* =====================================================
+   CONTENIDO
+===================================================== */
 
 .content{
 
-    position:absolute;
-
-    width:min(90%,700px);
-
-    left:50%;
-    top:50%;
-
-    transform:translate(-50%,-50%);
+    width:min(90%,720px);
 
     text-align:center;
 
-    z-index:20;
+    position:relative;
 
-    animation:contentAppear 2.5s ease forwards;
+    z-index:30;
 }
 
-@keyframes contentAppear{
 
-    from{
-        opacity:0;
-        transform:translate(-50%,-43%);
-    }
-
-    to{
-        opacity:1;
-        transform:translate(-50%,-50%);
-    }
-}
-
+/* =====================================================
+   ESCENA 1
+===================================================== */
 
 .pre-title{
 
-    font-size:clamp(.75rem,2vw,1rem);
+    font-size:
+        clamp(.75rem,2vw,1rem);
 
     letter-spacing:
         clamp(3px,1vw,7px);
@@ -215,21 +267,20 @@ body{
 
     color:#e8d8ff;
 
-    margin-bottom:18px;
+    margin-bottom:10px;
 
     text-shadow:
         0 0 15px rgba(210,160,255,.8);
 }
 
-
 .name{
 
     font-size:
-        clamp(3.2rem,12vw,7rem);
+        clamp(3rem,11vw,6.5rem);
 
     font-weight:normal;
 
-    margin-bottom:5px;
+    margin-bottom:0;
 
     background:
         linear-gradient(
@@ -245,9 +296,6 @@ body{
 
     color:transparent;
 
-    text-shadow:
-        0 0 30px rgba(255,190,240,.2);
-
     animation:
         nameGlow 4s ease-in-out infinite alternate;
 }
@@ -256,20 +304,25 @@ body{
 
     from{
         filter:
-            drop-shadow(0 0 8px rgba(255,170,230,.3));
+            drop-shadow(
+                0 0 8px
+                rgba(255,170,230,.3)
+            );
     }
 
     to{
         filter:
-            drop-shadow(0 0 35px rgba(255,210,245,.9));
+            drop-shadow(
+                0 0 35px
+                rgba(255,210,245,.9)
+            );
     }
 }
-
 
 .age{
 
     font-size:
-        clamp(5rem,20vw,12rem);
+        clamp(5rem,20vw,11rem);
 
     line-height:.85;
 
@@ -290,7 +343,10 @@ body{
     color:transparent;
 
     filter:
-        drop-shadow(0 0 20px rgba(255,190,100,.4));
+        drop-shadow(
+            0 0 20px
+            rgba(255,190,100,.4)
+        );
 
     animation:
         agePulse 4s ease-in-out infinite;
@@ -307,7 +363,6 @@ body{
     }
 }
 
-
 .message{
 
     margin-top:25px;
@@ -320,9 +375,9 @@ body{
     color:#f7edf9;
 
     text-shadow:
-        0 0 15px rgba(255,255,255,.25);
+        0 0 15px
+        rgba(255,255,255,.25);
 }
-
 
 .highlight{
 
@@ -332,11 +387,12 @@ body{
 }
 
 
-/* =========================
-   BOTÓN
-========================= */
+/* =====================================================
+   BOTONES
+===================================================== */
 
-.enter{
+.enter,
+.next-button{
 
     margin-top:32px;
 
@@ -353,8 +409,6 @@ body{
 
     color:white;
 
-    font-family:inherit;
-
     font-size:1rem;
 
     cursor:pointer;
@@ -362,10 +416,13 @@ body{
     backdrop-filter:blur(12px);
 
     box-shadow:
-        0 0 20px rgba(255,190,240,.12);
+        0 0 20px
+        rgba(255,190,240,.12);
 
-    transition:
-        .4s ease;
+    transition:.4s ease;
+}
+
+.enter{
 
     animation:
         buttonFloat 3s ease-in-out infinite;
@@ -382,22 +439,23 @@ body{
     }
 }
 
-.enter:hover{
+.enter:hover,
+.next-button:hover{
 
-    transform:
-        scale(1.08);
+    transform:scale(1.08);
 
     background:
         rgba(255,255,255,.15);
 
     box-shadow:
-        0 0 30px rgba(255,190,240,.45);
+        0 0 30px
+        rgba(255,190,240,.45);
 }
 
 
-/* =========================
+/* =====================================================
    FLORES
-========================= */
+===================================================== */
 
 .flower{
 
@@ -411,7 +469,10 @@ body{
     z-index:8;
 
     filter:
-        drop-shadow(0 0 10px rgba(255,210,100,.5));
+        drop-shadow(
+            0 0 10px
+            rgba(255,210,100,.5)
+        );
 
     animation:
         flowerFloat 7s ease-in-out infinite;
@@ -433,50 +494,222 @@ body{
 }
 
 
-/* =========================
-   PÉTALOS
-========================= */
+/* =====================================================
+   ESCENA 2 - OJITOS
+===================================================== */
 
-.petal{
+.eyes-title{
 
-    position:absolute;
+    font-size:
+        clamp(2rem,7vw,4rem);
 
-    top:-50px;
+    font-weight:normal;
 
-    z-index:15;
+    color:#fff;
 
-    pointer-events:none;
+    margin-bottom:15px;
+
+    text-shadow:
+        0 0 20px
+        rgba(255,190,230,.7);
+}
+
+.eyes-subtitle{
+
+    font-size:
+        clamp(1rem,3vw,1.25rem);
+
+    color:#d9c8ed;
+
+    line-height:1.7;
+
+    margin-bottom:30px;
+}
+
+
+/* Estrellas especiales */
+
+.magic-stars{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:
+        clamp(25px,7vw,60px);
+
+    margin:
+        20px 0 35px;
+}
+
+.magic-star{
+
+    width:65px;
+    height:65px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    font-size:30px;
+
+    cursor:pointer;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.2),
+            rgba(180,120,255,.08)
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,.25);
+
+    box-shadow:
+        0 0 20px
+        rgba(220,180,255,.25);
+
+    transition:.5s ease;
 
     animation:
-        fall linear forwards;
+        magicFloat 3s ease-in-out infinite;
 }
 
-@keyframes fall{
+.magic-star:nth-child(2){
+    animation-delay:.7s;
+}
 
-    0%{
-        transform:
-            translateY(-50px)
-            rotate(0deg);
-        opacity:0;
+.magic-star:nth-child(3){
+    animation-delay:1.4s;
+}
+
+@keyframes magicFloat{
+
+    0%,100%{
+        transform:translateY(0);
     }
 
-    10%{
-        opacity:.9;
-    }
-
-    100%{
-        transform:
-            translateY(110vh)
-            translateX(var(--drift))
-            rotate(720deg);
-        opacity:0;
+    50%{
+        transform:translateY(-12px);
     }
 }
 
+.magic-star:hover{
 
-/* =========================
+    transform:
+        scale(1.2);
+
+    box-shadow:
+        0 0 35px
+        rgba(255,210,255,.8);
+}
+
+.magic-star.revealed{
+
+    background:
+        rgba(255,220,245,.2);
+
+    box-shadow:
+        0 0 35px
+        rgba(255,180,230,.8);
+
+    animation:none;
+
+    transform:scale(1.15);
+}
+
+
+/* =====================================================
+   MENSAJE REVELADO
+===================================================== */
+
+.reveal-box{
+
+    min-height:105px;
+
+    padding:
+        10px 20px;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    color:#fff;
+
+    font-size:
+        clamp(1.1rem,3.5vw,1.5rem);
+
+    line-height:1.7;
+
+    text-shadow:
+        0 0 15px
+        rgba(255,255,255,.25);
+}
+
+.reveal-text{
+
+    opacity:0;
+
+    transform:translateY(15px);
+
+    transition:
+        opacity .7s ease,
+        transform .7s ease;
+}
+
+.reveal-text.show{
+
+    opacity:1;
+
+    transform:translateY(0);
+}
+
+
+/* =====================================================
+   CACHEtITOS
+===================================================== */
+
+.cheeks{
+
+    display:none;
+
+    margin-top:10px;
+
+    font-size:
+        clamp(1.2rem,4vw,1.6rem);
+
+    line-height:1.8;
+
+    animation:
+        cheeksAppear 1.2s ease forwards;
+}
+
+.cheeks.show{
+    display:block;
+}
+
+@keyframes cheeksAppear{
+
+    from{
+        opacity:0;
+        transform:scale(.7);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+
+/* =====================================================
    CORAZONES
-========================= */
+===================================================== */
 
 .heart{
 
@@ -484,7 +717,7 @@ body{
 
     pointer-events:none;
 
-    z-index:30;
+    z-index:100;
 
     font-size:
         clamp(15px,3vw,28px);
@@ -515,9 +748,52 @@ body{
 }
 
 
-/* =========================
-   FLASH AL TOCAR
-========================= */
+/* =====================================================
+   PÉTALOS
+===================================================== */
+
+.petal{
+
+    position:absolute;
+
+    top:-50px;
+
+    z-index:15;
+
+    pointer-events:none;
+
+    animation:
+        fall linear forwards;
+}
+
+@keyframes fall{
+
+    0%{
+        transform:
+            translateY(-50px)
+            rotate(0deg);
+
+        opacity:0;
+    }
+
+    10%{
+        opacity:.9;
+    }
+
+    100%{
+        transform:
+            translateY(110vh)
+            translateX(var(--drift))
+            rotate(720deg);
+
+        opacity:0;
+    }
+}
+
+
+/* =====================================================
+   FLASH
+===================================================== */
 
 .flash{
 
@@ -525,14 +801,13 @@ body{
 
     inset:0;
 
-    z-index:100;
+    z-index:200;
 
     pointer-events:none;
 
     background:white;
 
     opacity:0;
-
 }
 
 .flash.active{
@@ -557,61 +832,21 @@ body{
 }
 
 
-/* =========================
-   PANTALLA DE TRANSICIÓN
-========================= */
+/* =====================================================
+   TRANSICIÓN DE UNIVERSO
+===================================================== */
 
-.transition{
+.zooming{
 
-    position:absolute;
+    transform:scale(1.5);
 
-    inset:0;
-
-    z-index:200;
-
-    background:#03020b;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    opacity:0;
-
-    pointer-events:none;
-
-    transition:
-        opacity 1.2s ease;
-}
-
-.transition.show{
-
-    opacity:1;
-
-}
-
-.transition-text{
-
-    text-align:center;
-
-    width:90%;
-
-    font-size:
-        clamp(1.2rem,4vw,2rem);
-
-    line-height:1.8;
-
-    color:#fff;
-
-    text-shadow:
-        0 0 20px rgba(255,190,230,.8);
+    filter:blur(5px);
 }
 
 
-/* =========================
+/* =====================================================
    MÓVIL
-========================= */
+===================================================== */
 
 @media(max-width:600px){
 
@@ -619,13 +854,18 @@ body{
         padding:0 10px;
     }
 
-    .enter{
-        font-size:.95rem;
-        padding:14px 25px;
+    .magic-stars{
+        gap:18px;
+    }
+
+    .magic-star{
+        width:58px;
+        height:58px;
+        font-size:25px;
     }
 
     .flower{
-        opacity:.6;
+        opacity:.55;
     }
 
 }
@@ -636,148 +876,308 @@ body{
 
 <body>
 
-<div class="universe">
+
+<div class="universe" id="universe">
+
+    <!-- =================================================
+         NEBULOSA
+    ================================================== -->
 
     <div class="nebula"></div>
 
+
+    <!-- =================================================
+         ESTRELLAS
+    ================================================== -->
+
     <div class="stars" id="stars"></div>
 
+
     <!-- Destellos -->
-    <div class="sparkle" style="left:12%;top:20%;">✦</div>
-    <div class="sparkle" style="left:83%;top:18%;animation-delay:1s;">✦</div>
-    <div class="sparkle" style="left:18%;top:78%;animation-delay:2s;">✧</div>
-    <div class="sparkle" style="left:87%;top:75%;animation-delay:.5s;">✦</div>
+
+    <div class="sparkle"
+         style="left:12%;top:20%;">
+        ✦
+    </div>
+
+    <div class="sparkle"
+         style="left:83%;top:18%;
+                animation-delay:1s;">
+        ✦
+    </div>
+
+    <div class="sparkle"
+         style="left:18%;top:78%;
+                animation-delay:2s;">
+        ✧
+    </div>
+
+    <div class="sparkle"
+         style="left:87%;top:75%;
+                animation-delay:.5s;">
+        ✦
+    </div>
+
 
     <!-- Flores -->
-    <div class="flower" style="left:7%;top:18%;animation-delay:1s;">🌻</div>
-    <div class="flower" style="right:8%;top:22%;animation-delay:2s;">🌹</div>
-    <div class="flower" style="left:9%;bottom:15%;animation-delay:3s;">🌹</div>
-    <div class="flower" style="right:8%;bottom:14%;animation-delay:1.5s;">🌻</div>
 
-    <!-- Contenido -->
-    <main class="content">
-
-        <div class="pre-title">
-            Para la niña que hace bonito mi universo
-        </div>
-
-        <div class="name">
-            Mi Yar
-        </div>
-
-        <div class="age">
-            25
-        </div>
-
-        <div class="message">
-
-            Hoy cumple años<br>
-
-            <span class="highlight">
-                la niña que hace bonito mi universo.
-            </span>
-
-            🌻❤️
-
-        </div>
-
-        <button class="enter" onclick="enterUniverse()">
-            ✨ Entrar a mi universo ✨
-        </button>
-
-    </main>
-
-    <div class="flash" id="flash"></div>
-
-    <div class="transition" id="transition">
-
-        <div class="transition-text">
-
-            ✨ Espera, mi Yar... ✨
-            <br><br>
-
-            <span>
-                Esto apenas comienza. 🥺❤️
-            </span>
-
-        </div>
-
+    <div class="flower"
+         style="left:7%;top:18%;
+                animation-delay:1s;">
+        🌻
     </div>
+
+    <div class="flower"
+         style="right:8%;top:22%;
+                animation-delay:2s;">
+        🌹
+    </div>
+
+    <div class="flower"
+         style="left:9%;bottom:15%;
+                animation-delay:3s;">
+        🌹
+    </div>
+
+    <div class="flower"
+         style="right:8%;bottom:14%;
+                animation-delay:1.5s;">
+        🌻
+    </div>
+
+
+
+    <!-- =================================================
+         ESCENA 1
+    ================================================== -->
+
+    <section class="scene active"
+             id="scene1">
+
+        <div class="content">
+
+            <div class="pre-title">
+                Para la niña que hace bonito mi universo
+            </div>
+
+            <div class="name">
+                Mi Yar
+            </div>
+
+            <div class="age">
+                25
+            </div>
+
+            <div class="message">
+
+                Hoy cumple años<br>
+
+                <span class="highlight">
+                    la niña que hace bonito mi universo.
+                </span>
+
+                🌻❤️
+
+            </div>
+
+            <button
+                class="enter"
+                onclick="goToEyes()">
+
+                ✨ Entrar a mi universo ✨
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         ESCENA 2
+    ================================================== -->
+
+    <section class="scene"
+             id="scene2">
+
+        <div class="content">
+
+            <div class="eyes-title">
+
+                Hay algo de ti... 👀
+
+            </div>
+
+            <div class="eyes-subtitle">
+
+                que tiene completamente
+                enamorada a esta niña. 🥺❤️
+                <br><br>
+
+                Toca las estrellas
+                y descubre qué es.
+
+            </div>
+
+
+            <!-- ESTRELLAS INTERACTIVAS -->
+
+            <div class="magic-stars">
+
+                <div class="magic-star"
+                     onclick="revealReason(1,this)">
+                    ✨
+                </div>
+
+                <div class="magic-star"
+                     onclick="revealReason(2,this)">
+                    ✨
+                </div>
+
+                <div class="magic-star"
+                     onclick="revealReason(3,this)">
+                    ✨
+                </div>
+
+            </div>
+
+
+            <!-- TEXTO -->
+
+            <div class="reveal-box">
+
+                <div
+                    id="revealText"
+                    class="reveal-text">
+
+                </div>
+
+            </div>
+
+
+            <!-- CACHEtITOS -->
+
+            <div
+                id="cheeks"
+                class="cheeks">
+
+                Y ni siquiera voy a empezar
+                con esos cachetitos... 🥺💗
+                <br>
+
+                porque me dan unas ganas
+                enormes de llenarlos de besitos. 😭❤️
+
+            </div>
+
+
+            <!-- SIGUIENTE -->
+
+            <button
+                id="nextButton"
+                class="next-button"
+                style="display:none;"
+                onclick="nextScene()">
+
+                🌻 Quiero seguir descubriendo tu universo 🌻
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- FLASH -->
+
+    <div
+        class="flash"
+        id="flash">
+    </div>
+
 
 </div>
 
 
+
 <script>
 
-/* =====================================
-   CREAR MUCHAS ESTRELLAS
-===================================== */
+
+/* =====================================================
+   CREAR ESTRELLAS
+===================================================== */
 
 const starsContainer =
     document.getElementById("stars");
 
-for(let i = 0; i < 220; i++){
+for(let i=0;i<230;i++){
 
     const star =
         document.createElement("div");
 
-    star.className = "star";
+    star.className="star";
 
     star.style.left =
-        Math.random() * 100 + "%";
+        Math.random()*100+"%";
 
     star.style.top =
-        Math.random() * 100 + "%";
+        Math.random()*100+"%";
 
     const size =
-        Math.random() * 3 + 1;
+        Math.random()*3+1;
 
     star.style.width =
-        size + "px";
+        size+"px";
 
     star.style.height =
-        size + "px";
+        size+"px";
 
     star.style.setProperty(
         "--duration",
-        (1.5 + Math.random() * 4) + "s"
+        (1.5+Math.random()*4)+"s"
     );
 
     star.style.setProperty(
         "--delay",
-        Math.random() * 4 + "s"
+        Math.random()*4+"s"
     );
 
     starsContainer.appendChild(star);
 }
 
 
-/* =====================================
+/* =====================================================
    CORAZONES
-===================================== */
+===================================================== */
 
 function createHeart(x,y){
 
     const heart =
         document.createElement("div");
 
-    heart.className = "heart";
+    heart.className="heart";
 
-    const hearts =
-        ["❤️","💗","💕","💖","💓"];
+    const hearts=[
+        "❤️",
+        "💗",
+        "💕",
+        "💖",
+        "💓"
+    ];
 
-    heart.innerHTML =
-        hearts[Math.floor(
-            Math.random() * hearts.length
-        )];
+    heart.innerHTML=
+        hearts[
+            Math.floor(
+                Math.random()*hearts.length
+            )
+        ];
 
-    heart.style.left =
-        x + "px";
+    heart.style.left=x+"px";
+    heart.style.top=y+"px";
 
-    heart.style.top =
-        y + "px";
-
-    document.querySelector(".universe")
+    document
+        .getElementById("universe")
         .appendChild(heart);
 
     setTimeout(()=>{
@@ -786,40 +1186,47 @@ function createHeart(x,y){
 }
 
 
-/* =====================================
+/* =====================================================
    PÉTALOS
-===================================== */
+===================================================== */
 
 function createPetal(){
 
     const petal =
         document.createElement("div");
 
-    petal.className = "petal";
+    petal.className="petal";
 
-    const flowers =
-        ["🌹","🌸","🌷","🌺"];
+    const flowers=[
+        "🌹",
+        "🌸",
+        "🌷",
+        "🌺"
+    ];
 
-    petal.innerHTML =
-        flowers[Math.floor(
-            Math.random() * flowers.length
-        )];
+    petal.innerHTML=
+        flowers[
+            Math.floor(
+                Math.random()*flowers.length
+            )
+        ];
 
-    petal.style.left =
-        Math.random() * 100 + "%";
+    petal.style.left=
+        Math.random()*100+"%";
 
-    petal.style.fontSize =
-        (12 + Math.random() * 15) + "px";
+    petal.style.fontSize=
+        (12+Math.random()*15)+"px";
 
-    petal.style.animationDuration =
-        (5 + Math.random() * 5) + "s";
+    petal.style.animationDuration=
+        (5+Math.random()*5)+"s";
 
     petal.style.setProperty(
         "--drift",
-        (-100 + Math.random() * 200) + "px"
+        (-100+Math.random()*200)+"px"
     );
 
-    document.querySelector(".universe")
+    document
+        .getElementById("universe")
         .appendChild(petal);
 
     setTimeout(()=>{
@@ -827,88 +1234,195 @@ function createPetal(){
     },10000);
 }
 
-
-/* Pétalos ocasionales */
-
-setInterval(createPetal,1300);
+setInterval(createPetal,1500);
 
 
-/* =====================================
-   BOTÓN PRINCIPAL
-===================================== */
+/* =====================================================
+   ENTRAR A LA ESCENA 2
+===================================================== */
 
-function enterUniverse(){
+function goToEyes(){
 
     const universe =
-        document.querySelector(".universe");
+        document.getElementById("universe");
 
     const flash =
         document.getElementById("flash");
 
-    const transition =
-        document.getElementById("transition");
-
-
     /* Corazones */
 
-    for(let i=0;i<45;i++){
+    for(let i=0;i<50;i++){
 
         setTimeout(()=>{
 
-            const x =
-                window.innerWidth *
-                (0.15 + Math.random() * .7);
+            createHeart(
+                window.innerWidth*
+                (.15+Math.random()*.7),
 
-            const y =
-                window.innerHeight *
-                (0.45 + Math.random() * .35);
+                window.innerHeight*
+                (.45+Math.random()*.35)
+            );
 
-            createHeart(x,y);
-
-        },i*35);
+        },i*30);
 
     }
-
 
     /* Flash */
 
     flash.classList.add("active");
 
+    /* Zoom */
+
+    universe.classList.add("zooming");
+
+
     setTimeout(()=>{
-        flash.classList.remove("active");
+
+        document
+            .getElementById("scene1")
+            .classList.remove("active");
+
+        document
+            .getElementById("scene2")
+            .classList.add("active");
+
     },800);
 
 
-    /* Mostrar transición */
-
     setTimeout(()=>{
 
-        transition.classList.add("show");
+        universe.classList.remove("zooming");
 
-    },700);
-
+    },2000);
 }
 
 
-/* =====================================
-   CORAZONES AL TOCAR LA PANTALLA
-===================================== */
+/* =====================================================
+   REVELAR LAS 3 RAZONES
+===================================================== */
 
-document.addEventListener("pointerdown",(event)=>{
+let revealed=0;
+
+const reasons={
+
+    1:
+    "Primero... hay algo en tu mirada que me desarma por completo. 🥺❤️",
+
+    2:
+    "Tus ojitos. 👀💗 No sé qué tienen, pero podría quedarme mirándolos durante horas.",
+
+    3:
+    "Y cuando esos ojitos se ponen felices... no sabes lo mucho que amo verte así. 🥹❤️"
+
+};
+
+
+function revealReason(number,element){
 
     if(
-        event.target.tagName === "BUTTON"
+        element.classList.contains("revealed")
     ){
         return;
     }
 
-    createHeart(
-        event.clientX,
-        event.clientY
+
+    element.classList.add("revealed");
+
+    revealed++;
+
+
+    const text =
+        document.getElementById("revealText");
+
+
+    text.classList.remove("show");
+
+
+    setTimeout(()=>{
+
+        text.innerHTML =
+            reasons[number];
+
+        text.classList.add("show");
+
+    },250);
+
+
+    /* Corazones */
+
+    for(let i=0;i<8;i++){
+
+        setTimeout(()=>{
+
+            createHeart(
+                element.getBoundingClientRect().left
+                +
+                element.offsetWidth/2,
+
+                element.getBoundingClientRect().top
+            );
+
+        },i*80);
+
+    }
+
+
+    /* Cuando descubre las 3 */
+
+    if(revealed===3){
+
+        setTimeout(()=>{
+
+            document
+                .getElementById("cheeks")
+                .classList.add("show");
+
+            document
+                .getElementById("nextButton")
+                .style.display="inline-block";
+
+        },1000);
+
+    }
+
+}
+
+
+/* =====================================================
+   SIGUIENTE ESCENA
+===================================================== */
+
+function nextScene(){
+
+    alert(
+        "🌻 Esta es la siguiente parte de nuestra historia..."
     );
 
-});
+}
 
+
+/* =====================================================
+   CORAZÓN AL TOCAR CUALQUIER PARTE
+===================================================== */
+
+document.addEventListener(
+    "pointerdown",
+    function(event){
+
+        if(
+            event.target.tagName==="BUTTON" ||
+            event.target.classList.contains("magic-star")
+        ){
+            return;
+        }
+
+        createHeart(
+            event.clientX,
+            event.clientY
+        );
+
+    }
+);
 
 </script>
 
